@@ -4,6 +4,15 @@ public class Hat {
     String name;
     String color;
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    String status;
     public Hat(String name, String color) {
         this.name = name;
         this.color = color;

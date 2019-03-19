@@ -9,7 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/img_item"
@@ -68,8 +68,10 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_edit"
-            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_time"
             app:srcCompat="@drawable/img_tag" />
@@ -79,10 +81,21 @@
             android:layout_width="27dp"
             android:layout_height="26dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="168dp"
-            app:layout_constraintEnd_toStartOf="@+id/img_item"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/imageView_hashtag"
             app:layout_constraintTop_toBottomOf="@+id/textView_time"
             app:srcCompat="@drawable/img_edit_item" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.37" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,7 @@
 package com.example.inventoryapplication;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +21,18 @@ public class MainActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
     public RecyclerView.Adapter mAdapter;
     public RecyclerView.LayoutManager layoutManager;
+
+    private View.OnClickListener onItemClickListener = new View.OnClickListener() {
+        public void onClick(View view) {
+            RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
+            int position = viewHolder.getAdapterPosition();
+            SQLiteDatabase tempDB = hatDB.getWritableDatabase();
+            String query = "Select * FROM " + hatDB.getDatabaseName() + " WHERE _id = " + position;
+            Cursor cursor = tempDB.rawQuery(query, null);
+            cursor.moveToFirst();
+
+        }
+    };
 
 
     @Override
@@ -40,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
+        ((HatAdapter) mAdapter).setOnItemClickListener(onItemClickListener);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

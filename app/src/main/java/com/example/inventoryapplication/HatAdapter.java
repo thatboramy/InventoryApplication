@@ -8,6 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.example.inventoryapplication.Provider.IUserProvider;
+import com.example.inventoryapplication.Provider.UserDataInjector;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -20,9 +24,8 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
     Context mcontext;
     Cursor mcursor;
     private View.OnClickListener mOnItemClickListener;
-    //UserProvider user = new
-    //IUserProvider mockUser = new MockUserProvider();
-    //ArrayList<String> mockNames = mockUser.getAllNames();
+    IUserProvider mockUser = new UserDataInjector();
+    ArrayList<String> mockNames = mockUser.getAllNames();
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
@@ -50,13 +53,14 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView hatName;
         public TextView hatStatus;
+        public TextView userName;
 
         public ViewHolder(final View itemView, int i) {
             super(itemView);
             final int temppos = i;
             hatName = (TextView) itemView.findViewById(R.id.textView_title);
             hatStatus = (TextView) itemView.findViewById(R.id.textView_status);
-
+            userName = (TextView) itemView.findViewById(R.id.textView_user);
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
         }
@@ -67,14 +71,13 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
         mcursor.moveToPosition(i);
-        //myViewHolder.shirttextView.setText(Shirt.shirts[i].name);
-        //myViewHolder.colortextView.setText(Shirt.shirts[i].color);
-        //holder.bindCursor(mcursor);
         String currHatName = mcursor.getString(1);
         String currStatus = mcursor.getString(3);
         holder.hatName.setText(currHatName);
 
         int userID = new Random().nextInt(2);
+        String tempUserName = mockNames.get(userID);
+        holder.userName.setText(tempUserName);
 
         Resources res = mcontext.getResources();
         int color;

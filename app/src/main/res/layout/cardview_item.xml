@@ -67,7 +67,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView_time"
+            android:id="@+id/textView_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toStartOf="@+id/imageView_edit"
             app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_time"
+            app:layout_constraintTop_toBottomOf="@+id/textView_user"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/img_tag" />
 
@@ -102,7 +102,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/imageView_hashtag"
-            app:layout_constraintTop_toBottomOf="@+id/textView_time"
+            app:layout_constraintTop_toBottomOf="@+id/textView_user"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/img_edit_item" />
 

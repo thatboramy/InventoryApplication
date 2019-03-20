@@ -8,14 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.example.inventoryapplication.Providers.IUserProvider;
-import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Random;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,8 +21,8 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
     Cursor mcursor;
     private View.OnClickListener mOnItemClickListener;
     //UserProvider user = new
-    IUserProvider mockUser = new MockUserProvider();
-    ArrayList<String> mockNames = mockUser.getAllNames();
+    //IUserProvider mockUser = new MockUserProvider();
+    //ArrayList<String> mockNames = mockUser.getAllNames();
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
@@ -53,11 +49,13 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView hatName;
+        public TextView hatStatus;
 
         public ViewHolder(final View itemView, int i) {
             super(itemView);
             final int temppos = i;
             hatName = (TextView) itemView.findViewById(R.id.textView_title);
+            hatStatus = (TextView) itemView.findViewById(R.id.textView_status);
 
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
@@ -77,16 +75,6 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
         holder.hatName.setText(currHatName);
 
         int userID = new Random().nextInt(2);
-        holder.userName.setText(mockNames.get(userID));
-
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = mcursor.getString(1);
-                Toast toast = Toast.makeText(mcontext, "Item Clicked: " + name, Toast.LENGTH_SHORT);
-                toast.show();
-            }
-        });*/
 
         Resources res = mcontext.getResources();
         int color;

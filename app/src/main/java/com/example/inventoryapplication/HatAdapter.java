@@ -8,6 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.inventoryapplication.Providers.IUserProvider;
+
+import java.util.ArrayList;
+import java.util.Random;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +21,9 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
     Context mcontext;
     Cursor mcursor;
     private View.OnClickListener mOnItemClickListener;
+    //UserProvider user = new
+    IUserProvider mockUser = new MockUserProvider();
+    ArrayList<String> mockNames = mockUser.getAllNames();
 
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
@@ -42,11 +50,13 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView hatName;
+        public TextView userName;
 
         public ViewHolder(final View itemView, int i) {
             super(itemView);
             final int temppos = i;
             hatName = (TextView) itemView.findViewById(R.id.textView_title);
+            userName = (TextView) itemView.findViewById(R.id.textView_user);
 
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
@@ -63,6 +73,10 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
         //holder.bindCursor(mcursor);
         String currHatName = mcursor.getString(1);
         holder.hatName.setText(currHatName);
+
+        int userID = new Random().nextInt(2);
+        holder.userName.setText(mockNames.get(userID));
+
         /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,5 +1,6 @@
 package com.example.inventoryapplication;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -42,27 +43,28 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //RECYCLERVIEW STUFF
+        //RECYCLERVIEW
         hatDB = new HatDBHelper(this);
-
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new HatAdapter(this, hatDB.getallData());
         recyclerView.setAdapter(mAdapter);
-
-
         ((HatAdapter) mAdapter).setOnItemClickListener(onItemClickListener);
+
+        //FLOATING ACTION BUTTON
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent add = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(add);
             }
         });
+
     }
 
     @Override

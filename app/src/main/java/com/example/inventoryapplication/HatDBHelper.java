@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class HatDBHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Hat";
-    public static final int DB_VERSION = 1;
+    public static final int DB_VERSION = 3;
 
     public HatDBHelper(Context context){
         super(context, DB_NAME,null, DB_VERSION);
@@ -24,6 +24,7 @@ public class HatDBHelper extends SQLiteOpenHelper {
         insertHat(db, "Bowler Hat", "Red", "SOLD");
         insertHat(db, "Baseball Cap", "Brown", "UNLISTED");
         insertHat(db, "Cap", "Black", "SOLD");
+        insertHat(db, "Cap", "Black", "SOLD");
     }
 
     private void insertHat(SQLiteDatabase db, String n, String c, String s) {
@@ -34,11 +35,19 @@ public class HatDBHelper extends SQLiteOpenHelper {
         db.insert("HAT", null, hatValues);
     }
 
+    private void deleteItem(SQLiteDatabase db, Cursor cursor){
+
+    }
+
+    //public Cursor searchHatByName(SQLiteDatabase db, String queryname){ }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS Hat");
         onCreate(db);
     }
+
+
 
     public Cursor getallData() {
         SQLiteDatabase db = this.getReadableDatabase();

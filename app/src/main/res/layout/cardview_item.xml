@@ -2,20 +2,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="1dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/img_item"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_marginBottom="8dp"
             android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_cap_item" />
@@ -26,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:text="Title"
+            android:textSize="24sp"
             app:layout_constraintEnd_toStartOf="@+id/textView_status"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +47,7 @@
             android:id="@+id/textView_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_title" />
@@ -43,18 +56,21 @@
             android:id="@+id/textView_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="36dp"
-            android:text="Status"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="NULL"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/img_item"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView_time"
+            android:id="@+id/textView_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="115dp"
             android:text="Time"
             app:layout_constraintEnd_toStartOf="@+id/img_item"
             app:layout_constraintHorizontal_bias="0.0"
@@ -68,12 +84,12 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageView_edit"
             app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_time"
+            app:layout_constraintTop_toBottomOf="@+id/textView_user"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/img_tag" />
 
         <ImageView
@@ -82,12 +98,12 @@
             android:layout_height="26dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@id/imageView_hashtag"
-            app:layout_constraintTop_toBottomOf="@+id/textView_time"
+            app:layout_constraintTop_toBottomOf="@+id/textView_user"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/img_edit_item" />
 
         <androidx.constraintlayout.widget.Guideline

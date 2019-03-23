@@ -6,4 +6,5 @@
     <color name="color_status_Unlisted">#7A7A7A</color>
     <color name="color_status_Sold">#E91E1E</color>
     <color name="color_status_Posted">#009688</color>
+    <color name="color_white">#FFFFFF</color>
 </resources>

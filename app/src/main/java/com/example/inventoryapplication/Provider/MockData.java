@@ -2,7 +2,7 @@ package com.example.inventoryapplication.Provider;
 
 import java.util.ArrayList;
 
-public class MockUser implements IUserProvider {
+class MockUser implements IUserProvider {
     ArrayList<String> names;
 
     public MockUser() {
@@ -22,7 +22,7 @@ public class MockUser implements IUserProvider {
 }
 
 class MockHat implements IHatProvider{
-    ArrayList<Hat> hatList = new ArrayList<>();
+    ArrayList<Hat> hatList;
 
     public MockHat() {
         this.hatList = new ArrayList<>();

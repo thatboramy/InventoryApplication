@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
-import com.example.inventoryapplication.Provider.IUserProvider;
 import com.example.inventoryapplication.Provider.UserDataInjector;
 import com.example.inventoryapplication.R;
 
@@ -25,7 +24,7 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     Context mcontext;
     private View.OnClickListener mOnItemClickListener;
-    IUserProvider mockUser = new UserDataInjector();
+    UserDataInjector mockUser = new UserDataInjector();
     ArrayList<String> mockNames = mockUser.getAllNames();
 
     HatDataInjector mockHat = new HatDataInjector();
@@ -61,9 +60,9 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
         public ViewHolder(final View itemView, int i) {
             super(itemView);
             final int temppos = i;
-            hatName = (TextView) itemView.findViewById(R.id.textView_title);
-            hatStatus = (TextView) itemView.findViewById(R.id.textView_status);
-            userName = (TextView) itemView.findViewById(R.id.textView_user);
+            hatName =itemView.findViewById(R.id.textView_title);
+            hatStatus =itemView.findViewById(R.id.textView_status);
+            userName =itemView.findViewById(R.id.textView_user);
             itemView.setTag(this);
             itemView.setOnClickListener(mOnItemClickListener);
         }
@@ -104,7 +103,7 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
                 color = ResourcesCompat.getColor(res, R.color.color_status_Unlisted, null);
                 holder.hatStatus.setTextColor(color);
                 break;
-        };
+        }
 
 
     }

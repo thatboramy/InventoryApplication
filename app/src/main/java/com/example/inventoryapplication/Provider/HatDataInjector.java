@@ -10,4 +10,9 @@ public class HatDataInjector implements IHatProvider {
     public ArrayList<String> getAllHatNames() {
         return hatprovider.getAllHatNames();
     }
+
+    @Override
+    public ArrayList<Hat> getAllData() {
+        return hatprovider.getAllData();
+    }
 }

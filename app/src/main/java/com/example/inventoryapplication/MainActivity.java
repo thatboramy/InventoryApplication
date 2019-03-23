@@ -5,8 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
+import com.example.inventoryapplication.Adapter.HatAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
-    public HatDBHelper hatDB;
     public RecyclerView recyclerView;
     public RecyclerView.Adapter mAdapter;
     public RecyclerView.LayoutManager layoutManager;
@@ -27,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
-            SQLiteDatabase tempDB = hatDB.getWritableDatabase();
-            String query = "Select * FROM " + hatDB.getDatabaseName() + " WHERE _id = " + position;
-            Cursor cursor = tempDB.rawQuery(query, null);
-            cursor.moveToFirst();
 
         }
     };
@@ -44,12 +39,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //RECYCLERVIEW
-        hatDB = new HatDBHelper(this);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        mAdapter = new HatAdapter(this, hatDB.getallData());
+        mAdapter = new HatAdapter(this);
         recyclerView.setAdapter(mAdapter);
         ((HatAdapter) mAdapter).setOnItemClickListener(onItemClickListener);
 

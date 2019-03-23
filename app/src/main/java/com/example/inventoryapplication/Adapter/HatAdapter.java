@@ -1,16 +1,18 @@
-package com.example.inventoryapplication;
+package com.example.inventoryapplication.Adapter;
 
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.inventoryapplication.Provider.Hat;
+import com.example.inventoryapplication.Provider.HatDataInjector;
 import com.example.inventoryapplication.Provider.IUserProvider;
 import com.example.inventoryapplication.Provider.UserDataInjector;
+import com.example.inventoryapplication.R;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -22,17 +24,18 @@ import androidx.recyclerview.widget.RecyclerView;
 public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     Context mcontext;
-    Cursor mcursor;
     private View.OnClickListener mOnItemClickListener;
     IUserProvider mockUser = new UserDataInjector();
     ArrayList<String> mockNames = mockUser.getAllNames();
 
+    HatDataInjector mockHat = new HatDataInjector();
+    ArrayList<Hat> mockHatList = mockHat.getAllData();
+
     public void setOnItemClickListener(View.OnClickListener itemClickListener) {
         mOnItemClickListener = itemClickListener;
     }
-    public HatAdapter(Context context, Cursor cursor) {
+    public HatAdapter(Context context) {
         mcontext = context;
-        mcursor = cursor;
     }
 
 
@@ -47,7 +50,7 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return mcursor.getCount();
+        return mockHatList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -70,9 +73,8 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int i) {
-        mcursor.moveToPosition(i);
-        String currHatName = mcursor.getString(1);
-        String currStatus = mcursor.getString(3);
+        String currHatName = mockHatList.get(i).getName();
+        String currStatus = mockHatList.get(i).getStatus();
         holder.hatName.setText(currHatName);
 
         int userID = new Random().nextInt(2);

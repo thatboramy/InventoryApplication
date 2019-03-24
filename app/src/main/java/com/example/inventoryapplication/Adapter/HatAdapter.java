@@ -94,6 +94,7 @@ public class HatAdapter extends RecyclerView.Adapter<HatAdapter.ViewHolder> {
                 holder.hatStatus.setTextColor(color);
                 break;
             case "LISTED":
+            case "POSTED":
                 holder.hatStatus.setText(currStatus);
                 color = ResourcesCompat.getColor(res, R.color.color_status_Posted, null);
                 holder.hatStatus.setTextColor(color);

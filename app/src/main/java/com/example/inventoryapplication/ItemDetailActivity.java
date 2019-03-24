@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment;
+import com.example.inventoryapplication.ItemDetailFragment.DescriptionFragment;
 import com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment;
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
@@ -40,16 +41,13 @@ public class ItemDetailActivity extends AppCompatActivity {
         name.putString("status",tempHat.getStatus());
         fragment.setArguments(name);
         fragmentTransaction.commit();
-
-
         Fragment fragment_2 = addNewFragment();
         fragment_2.setArguments(name);
         fragmentTransaction.add(R.id.layout_item_detail, fragment_2);
-        Fragment fragment_3 = new TestFunctionsFragment();
-        fragmentTransaction.add(R.id.layout_item_detail, fragment_3);
-        //ft2.addToBackStack(null);
-        //ft2.commit();
 
+        //Manual Element: Item Description
+        DescriptionFragment descriptionFragment = new DescriptionFragment();
+        fragmentTransaction.add(R.id.layout_item_detail,descriptionFragment);
     }
 
     public Fragment addNewFragment(){

@@ -36,7 +36,8 @@ class MockHat implements IHatProvider{
     public MockHat() {
         this.hatList = new ArrayList<>();
         for(int i = 0 ; i < 20; i++){
-            hatList.add(generateHat());
+            //Basically, this generates the same list of 25 hats. I'm too lazy to write them all. Sorry, I promise it works.
+            hatList.add(new Hat(hatType[i % 5], color[i % color.length], status[i % status.length], brand[i % brand.length], material[i % material.length], size[i % size.length]) );
         }
     }
     @Override

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.inventoryapplication.Adapter.HatAdapter;
+import com.example.inventoryapplication.Provider.HatDataInjector;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
             int position = viewHolder.getAdapterPosition();
 
             Intent viewItem = new Intent(MainActivity.this, ItemDetailActivity.class);
+            HatDataInjector temp = new HatDataInjector();
+            String name = temp.getHatbyID(position).getName();
             viewItem.putExtra("extra_itemid", position);
             startActivity(viewItem);
 
@@ -55,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(add);
             }
         });
+
 
     }
 

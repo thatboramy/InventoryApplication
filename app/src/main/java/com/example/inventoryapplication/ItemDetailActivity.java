@@ -28,7 +28,8 @@ public class ItemDetailActivity extends AppCompatActivity {
         //Creating the HatDataInjector
         HatDataInjector datainjector = new HatDataInjector();
         itemName = findViewById(R.id.textview_item_name);
-        Hat tempHat = datainjector.getHatbyID((Integer)getIntent().getExtras().get("extra_itemid"));
+        int postion = (Integer)getIntent().getExtras().get("extra_itemid");
+        Hat tempHat = datainjector.getHatbyID(postion);
         itemName.setText("Currently Displaying: " + tempHat.getName());
 
         //Depending on whether an item was a hat or shirt, we display a different amount of fragments or details
@@ -46,10 +47,6 @@ public class ItemDetailActivity extends AppCompatActivity {
         fragment_2.setArguments(name);
         fragmentTransaction.add(R.id.layout_item_detail, fragment_2);
 
-        //Manual Element: Item Description
-        DescriptionFragment descriptionFragment = new DescriptionFragment();
-        fragmentTransaction.add(R.id.layout_item_detail,descriptionFragment);
-
         //Hat-Only Element//
         HatDetailFragment hatFragment = new HatDetailFragment();
         Bundle hatdetail = new Bundle();
@@ -59,6 +56,10 @@ public class ItemDetailActivity extends AppCompatActivity {
         hatdetail.putString("material", tempHat.getMaterial());
         hatFragment.setArguments(hatdetail);
         fragmentTransaction.add(R.id.layout_item_detail, hatFragment);
+
+        //Manual Element: Item Description
+        DescriptionFragment descriptionFragment = new DescriptionFragment();
+        fragmentTransaction.add(R.id.layout_item_detail,descriptionFragment);
     }
 
     public Fragment addNewFragment(){

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment;
 import com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment;
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
@@ -34,11 +35,13 @@ public class ItemDetail extends AppCompatActivity {
         fragmentTransaction.commit();
 
         Fragment fragment_2 = addNewFragment();
-        FragmentManager fm2 = getSupportFragmentManager();
-        FragmentTransaction ft2 = fm2.beginTransaction();
+        //FragmentManager fm2 = getSupportFragmentManager();
+        //FragmentTransaction ft2 = fm2.beginTransaction();
         fragmentTransaction.add(R.id.layout_item_detail, fragment_2);
-        ft2.addToBackStack(null);
-        ft2.commit();
+        Fragment fragment_3 = new TestFunctionsFragment();
+        fragmentTransaction.add(R.id.layout_item_detail, fragment_3);
+        //ft2.addToBackStack(null);
+        //ft2.commit();
 
     }
 

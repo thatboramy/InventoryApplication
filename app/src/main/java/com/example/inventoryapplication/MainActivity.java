@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
 
+            Intent viewItem = new Intent(MainActivity.this, ItemDetail.class);
+            startActivity(viewItem);
 
         }
     };

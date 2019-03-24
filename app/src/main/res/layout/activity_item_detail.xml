@@ -25,5 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="TextView" />
+
+        <fragment
+            android:id="@+id/fragment_main_info"
+            android:name="com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

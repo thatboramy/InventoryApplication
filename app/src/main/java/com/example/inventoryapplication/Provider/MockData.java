@@ -45,4 +45,9 @@ class MockHat implements IHatProvider{
     public ArrayList<Hat> getAllData() {
         return this.hatList;
     }
+
+    @Override
+    public Hat getHatbyID(int id) {
+        return hatList.get(id);
+    }
 }

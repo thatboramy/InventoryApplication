@@ -15,4 +15,9 @@ public class HatDataInjector implements IHatProvider {
     public ArrayList<Hat> getAllData() {
         return hatprovider.getAllData();
     }
+
+    @Override
+    public Hat getHatbyID(int id) {
+        return hatprovider.getHatbyID(id);
+    }
 }

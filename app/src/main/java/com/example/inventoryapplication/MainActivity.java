@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
             int position = viewHolder.getAdapterPosition();
 
             Intent viewItem = new Intent(MainActivity.this, ItemDetail.class);
+            viewItem.putExtra("extra_itemid", position);
             startActivity(viewItem);
 
         }

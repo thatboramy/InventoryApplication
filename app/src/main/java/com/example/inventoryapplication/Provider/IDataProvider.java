@@ -14,4 +14,5 @@ interface IInventoryProvider{
 interface IHatProvider{
     ArrayList<String> getAllHatNames();
     ArrayList<Hat> getAllData();
+    Hat getHatbyID(int id);
 }

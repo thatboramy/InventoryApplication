@@ -15,10 +15,20 @@ import android.view.ViewGroup;
 import com.example.inventoryapplication.R;
 
 public class MainInfoFragment extends Fragment {
+
+    View currentview;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        currentview = inflater.inflate(R.layout.fragment_main_info, container, false);
         return inflater.inflate(R.layout.fragment_main_info, container, false);
     }
+
+    public View getCurrentview(){
+        return currentview;
+    }
+
+
 }

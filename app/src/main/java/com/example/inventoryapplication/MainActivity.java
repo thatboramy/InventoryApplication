@@ -1,15 +1,12 @@
 package com.example.inventoryapplication;
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.example.inventoryapplication.Adapter.HatAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             RecyclerView.ViewHolder viewHolder = (RecyclerView.ViewHolder) view.getTag();
             int position = viewHolder.getAdapterPosition();
 
-            Intent viewItem = new Intent(MainActivity.this, ItemDetail.class);
+            Intent viewItem = new Intent(MainActivity.this, ItemDetailActivity.class);
             viewItem.putExtra("extra_itemid", position);
             startActivity(viewItem);
 

@@ -14,7 +14,7 @@ import com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment;
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
 
-public class ItemDetail extends AppCompatActivity {
+public class ItemDetailActivity extends AppCompatActivity {
 
     TextView itemName;
     LinearLayout fragContainer;
@@ -37,6 +37,7 @@ public class ItemDetail extends AppCompatActivity {
         MainInfoFragment fragment = new MainInfoFragment();
         Bundle name = new Bundle();
         name.putString("name",tempHat.getName());
+        name.putString("status",tempHat.getStatus());
         fragment.setArguments(name);
         fragmentTransaction.commit();
 

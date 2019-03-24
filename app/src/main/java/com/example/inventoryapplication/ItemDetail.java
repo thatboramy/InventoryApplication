@@ -22,21 +22,27 @@ public class ItemDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail);
+
+        //Creating the HatDataInjector
         HatDataInjector datainjector = new HatDataInjector();
         itemName = findViewById(R.id.textview_item_name);
         Hat tempHat = datainjector.getHatbyID((Integer)getIntent().getExtras().get("extra_itemid"));
         itemName.setText("Currently Displaying: " + tempHat.getName());
-        fragContainer = findViewById(R.id.layout_item_detail);
+
+        //Depending on whether an item was a hat or shirt, we display a different amount of fragments or details
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        //First Manual Element:The Name//
         MainInfoFragment fragment = new MainInfoFragment();
-        fragmentTransaction.add(R.id.fragment_main_info, fragment);
+        Bundle name = new Bundle();
+        name.putString("name",tempHat.getName());
+        fragment.setArguments(name);
         fragmentTransaction.commit();
 
+
         Fragment fragment_2 = addNewFragment();
-        //FragmentManager fm2 = getSupportFragmentManager();
-        //FragmentTransaction ft2 = fm2.beginTransaction();
+        fragment_2.setArguments(name);
         fragmentTransaction.add(R.id.layout_item_detail, fragment_2);
         Fragment fragment_3 = new TestFunctionsFragment();
         fragmentTransaction.add(R.id.layout_item_detail, fragment_3);

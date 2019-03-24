@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment;
 import com.example.inventoryapplication.ItemDetailFragment.DescriptionFragment;
+import com.example.inventoryapplication.ItemDetailFragment.HatDetailFragment;
 import com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment;
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
@@ -48,6 +49,16 @@ public class ItemDetailActivity extends AppCompatActivity {
         //Manual Element: Item Description
         DescriptionFragment descriptionFragment = new DescriptionFragment();
         fragmentTransaction.add(R.id.layout_item_detail,descriptionFragment);
+
+        //Hat-Only Element//
+        HatDetailFragment hatFragment = new HatDetailFragment();
+        Bundle hatdetail = new Bundle();
+        hatdetail.putString("color", tempHat.getColor());
+        hatdetail.putString("brand", tempHat.getBrand());
+        hatdetail.putString("size", tempHat.getSize());
+        hatdetail.putString("material", tempHat.getMaterial());
+        hatFragment.setArguments(hatdetail);
+        fragmentTransaction.add(R.id.layout_item_detail, hatFragment);
     }
 
     public Fragment addNewFragment(){

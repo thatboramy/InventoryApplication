@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.inventoryapplication.R;
@@ -50,7 +51,9 @@ public class TestFunctionsFragment extends Fragment{
         input2.setVisibility(View.GONE);
         Button saveB = currentView.findViewById(R.id.button_save);
         saveB.setVisibility(View.GONE);
-
+        ProgressBar progressBar = currentView.findViewById(R.id.progressBar4);
+        progressBar.setProgress(100);
+        progressBar.setScaleX((float).5);
     }
 
     private void maximize() {
@@ -60,7 +63,8 @@ public class TestFunctionsFragment extends Fragment{
         input2.setVisibility(View.VISIBLE);
         Button saveB = currentView.findViewById(R.id.button_save);
         saveB.setVisibility(View.VISIBLE);
-
+        ProgressBar progressBar = currentView.findViewById(R.id.progressBar4);
+        progressBar.setScaleX((float)3.85);
     }
 
 }

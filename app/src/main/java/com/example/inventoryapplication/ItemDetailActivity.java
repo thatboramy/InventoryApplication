@@ -20,7 +20,6 @@ import com.example.inventoryapplication.Provider.HatDataInjector;
 public class ItemDetailActivity extends AppCompatActivity {
 
     TextView itemName;
-    LinearLayout fragContainer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 

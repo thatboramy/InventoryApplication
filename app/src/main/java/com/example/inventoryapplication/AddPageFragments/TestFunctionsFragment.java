@@ -51,9 +51,9 @@ public class TestFunctionsFragment extends Fragment{
         input2.setVisibility(View.GONE);
         Button saveB = currentView.findViewById(R.id.button_save);
         saveB.setVisibility(View.GONE);
-        ProgressBar progressBar = currentView.findViewById(R.id.progressBar4);
-        progressBar.setProgress(100);
-        progressBar.setScaleX((float).5);
+
+        View bar = currentView.findViewById(R.id.bar);
+        bar.setVisibility(View.GONE);
     }
 
     private void maximize() {
@@ -63,8 +63,9 @@ public class TestFunctionsFragment extends Fragment{
         input2.setVisibility(View.VISIBLE);
         Button saveB = currentView.findViewById(R.id.button_save);
         saveB.setVisibility(View.VISIBLE);
-        ProgressBar progressBar = currentView.findViewById(R.id.progressBar4);
-        progressBar.setScaleX((float)3.85);
+
+        View bar = currentView.findViewById(R.id.bar);
+        bar.setVisibility(View.VISIBLE);
     }
 
 }

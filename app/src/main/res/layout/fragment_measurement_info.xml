@@ -50,20 +50,19 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <ProgressBar
-                android:id="@+id/progressBar"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+            <View
+                android:id="@+id/bar"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:rotation="90"
-                android:scaleX=".8"
+                android:background="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewStepNumber"
-                app:layout_constraintVertical_bias="0.5"/>
+                app:layout_constraintEnd_toEndOf="@+id/textViewStepNumber"
+                app:layout_constraintStart_toStartOf="@+id/textViewStepNumber"
+                app:layout_constraintTop_toBottomOf="@+id/textViewStepNumber" />
 
             <fragment
                 android:id="@+id/fragment"
@@ -82,12 +81,12 @@
                 android:id="@+id/buttonNew"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginBottom="8dp"
                 android:text="Add new measurement"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/guidelineMain"
                 app:layout_constraintTop_toBottomOf="@+id/fragment"
                 app:layout_constraintVertical_bias="1.0" />
 
@@ -103,7 +102,7 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.655"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/buttonNew"
                 app:layout_constraintTop_toBottomOf="@+id/fragment"
                 app:layout_constraintVertical_bias="0.0" />

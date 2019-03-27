@@ -11,13 +11,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment;
+import com.example.inventoryapplication.AddPageFragments.onClickedFragmentListener;
 import com.example.inventoryapplication.ItemDetailFragment.DescriptionFragment;
 import com.example.inventoryapplication.ItemDetailFragment.HatDetailFragment;
 import com.example.inventoryapplication.ItemDetailFragment.MainInfoFragment;
 import com.example.inventoryapplication.Provider.Hat;
 import com.example.inventoryapplication.Provider.HatDataInjector;
 
-public class ItemDetailActivity extends AppCompatActivity {
+public class ItemDetailActivity extends AppCompatActivity  {
 
     TextView itemName;
     @Override
@@ -71,4 +72,5 @@ public class ItemDetailActivity extends AppCompatActivity {
         MainInfoFragment fragment = new MainInfoFragment();
         return fragment;
     }
+
 }

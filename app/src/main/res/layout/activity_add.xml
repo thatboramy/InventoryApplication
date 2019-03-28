@@ -4,30 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
         <LinearLayout
-            android:id="@+id/add_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:id="@+id/fragment1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:name="com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment"/>
 
-                <fragment
-                    android:id="@+id/fragment1"
-                    android:name="com.example.inventoryapplication.AddPageFragments.TestFunctionsFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="com.example.inventoryapplication.AddPageFragments.StyleFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-                <fragment
-                    android:id="@+id/fragment2"
-                    android:name="com.example.inventoryapplication.AddPageFragments.StyleFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        <fragment
+            android:id="@+id/fragment3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.inventoryapplication.AddPageFragments.MeasurementInfoFragment"/>
 
-                <fragment
-                    android:id="@+id/fragment3"
-                    android:name="com.example.inventoryapplication.AddPageFragments.MeasurementInfoFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-
+        <fragment
+            android:id="@+id/fragment4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.inventoryapplication.AddPageFragments.ColorFragment"/>
         </LinearLayout>
 </ScrollView>

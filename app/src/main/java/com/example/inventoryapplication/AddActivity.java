@@ -6,6 +6,7 @@ import android.os.PersistableBundle;
 import android.widget.ProgressBar;
 
 import com.example.inventoryapplication.AddPageFragments.ColorFragment;
+import com.example.inventoryapplication.AddPageFragments.DynamicStylesFragment;
 import com.example.inventoryapplication.AddPageFragments.onClickedFragmentListener;
 
 import androidx.annotation.Nullable;
@@ -23,9 +24,6 @@ public class AddActivity extends AppCompatActivity implements onClickedFragmentL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.commit();
     }
 
     @Override
@@ -34,9 +32,15 @@ public class AddActivity extends AppCompatActivity implements onClickedFragmentL
         fragmentTransaction = fragmentManager.beginTransaction();
         switch (nextfragment) {
             case "COLOR":
-            ColorFragment cf = new ColorFragment();
-            fragmentTransaction.add(R.id.add_page_layout, cf);
-            break;
+                ColorFragment cf = new ColorFragment();
+                fragmentTransaction.add(R.id.add_measurement_fragments, cf);
+                break;
+            case "MEASURE":
+                DynamicStylesFragment df = new DynamicStylesFragment();
+                String tag = "dynamic: " + df.getLocalID();
+                fragmentTransaction.add(R.id.add_measurement_fragments, df, tag);
+
+                break;
         }
         fragmentTransaction.commit();
     }

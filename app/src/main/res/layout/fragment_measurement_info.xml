@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="60dp">
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -60,47 +62,70 @@
                 android:layout_marginEnd="8dp"
                 android:text="Measurements"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineMain"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/spinnerSection"
+                android:layout_width="115dp"
+                android:layout_height="23dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:spinnerMode="dropdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.833"
+                app:layout_constraintStart_toStartOf="@id/guidelineMain"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0"/>
+                app:layout_constraintVertical_bias="0.014">
+
+            </Spinner>
 
             <View
                 android:id="@+id/bar"
                 android:layout_width="2dp"
                 android:layout_height="0dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:background="@color/colorAccent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textViewStepNumber"
                 app:layout_constraintStart_toStartOf="@+id/textViewStepNumber"
-                app:layout_constraintTop_toBottomOf="@id/textViewStepNumber"/>
+                app:layout_constraintTop_toBottomOf="@id/textViewStepNumber" />
 
-            <fragment
-                android:id="@+id/fragment"
-                android:name="com.example.inventoryapplication.AddPageFragments.DynamicStylesFragment"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/add_measurement_fragments"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.411"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guidelineMain"
-                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSection"
+                app:layout_constraintVertical_bias="0.135"></LinearLayout>
 
             <Button
                 android:id="@+id/buttonNew"
                 style="@style/CustomFragmentButton"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="48dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="52dp"
                 android:layout_marginBottom="8dp"
-                android:text="Add new measurement"
+                android:text="New measurement"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guidelineMain"
-                app:layout_constraintTop_toBottomOf="@+id/fragment"
-                app:layout_constraintVertical_bias="0.625" />
+                app:layout_constraintTop_toBottomOf="@+id/add_measurement_fragments"
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/buttonContinue"
@@ -108,17 +133,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="12dp"
                 android:text="Continue"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.655"
+                app:layout_constraintHorizontal_bias="0.478"
                 app:layout_constraintStart_toEndOf="@+id/buttonNew"
-                app:layout_constraintTop_toBottomOf="@+id/fragment"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toBottomOf="@+id/add_measurement_fragments" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

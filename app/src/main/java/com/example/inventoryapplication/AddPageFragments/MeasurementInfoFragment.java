@@ -79,11 +79,6 @@ public class MeasurementInfoFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        /*
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.commit();
-        */
         try {
             mListener = (onClickedFragmentListener) activity;
         } catch (ClassCastException e) {

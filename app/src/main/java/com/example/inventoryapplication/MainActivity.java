@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
     public RecyclerView recyclerView;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //RECYCLERVIEW
         recyclerView =findViewById(R.id.recycler_view);

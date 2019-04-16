@@ -16,7 +16,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class AddActivity extends AppCompatActivity implements onClickedFragmentListener {
+public class AddActivity extends AppCompatActivity {
 
     FragmentTransaction fragmentTransaction;
     FragmentManager fragmentManager;
@@ -25,27 +25,5 @@ public class AddActivity extends AppCompatActivity implements onClickedFragmentL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-    }
-
-    @Override
-    public void onButtonClicked(String nextfragment) {
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        switch (nextfragment) {
-            case "COLOR":
-                ColorFragment cf = new ColorFragment();
-                fragmentTransaction.add(R.id.add_measurement_fragments, cf);
-                break;
-
-            case "MEASURE":
-                DynamicStylesFragment df = new DynamicStylesFragment();
-                String tag = "dynamic: " + df.getLocalID();
-                Toast.makeText(getApplicationContext(), tag + " created", Toast.LENGTH_SHORT).show();
-                fragmentTransaction.add(R.id.add_measurement_fragments, df, tag);
-
-                break;
-
-        }
-        fragmentTransaction.commit();
     }
 }

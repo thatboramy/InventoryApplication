@@ -21,9 +21,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MeasurementInfoFragment extends Fragment {
-    onClickedFragmentListener mListener;
     View view;
     Boolean minimized = false;
+
+    private void addDynamicFragment(){
+        DynamicStylesFragment dynamicFragment = new DynamicStylesFragment();
+        //SET UP DYNAMIC ID: DYNAMICFRAGMENT
+        String tag = "dynamic: " + dynamicFragment.getLocalID();
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
+        fragmentTransaction.commit();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -120,36 +130,7 @@ public class MeasurementInfoFragment extends Fragment {
         showButton = view.findViewById(R.id.buttonContinue);
         showButton.setVisibility(view.VISIBLE);
     }
-
-    private void addDynamicFragment(){
-        DynamicStylesFragment dynamicFragment = new DynamicStylesFragment();
-        //SET UP DYNAMIC ID: DYNAMICFRAGMENT
-        String tag = "dynamic: " + dynamicFragment.getLocalID();
-        FragmentManager fragmentManager = getChildFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
-        fragmentTransaction.commit();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (onClickedFragmentListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString() + " must implement OnButtonClickedListener ");
-        }
-    }
-
-    public void clickButton() {
-        // When the button is clicked, notify the activity.
-        //   The activity will then pass the information to fragment
-        //   B (if it has been created).
-
-        //mListener.onButtonClicked("COLOR");
-        mListener.onButtonClicked("MEASURE");
-    }
-
+    
     @Override
     public void onDestroyView() {
         super.onDestroyView();

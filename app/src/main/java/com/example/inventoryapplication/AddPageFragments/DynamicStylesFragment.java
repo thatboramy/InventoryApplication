@@ -30,23 +30,23 @@ public class DynamicStylesFragment extends Fragment {
         return localID;
     }
     //when MeasurementInfoFragment is destroyed, count is reset to 0
-    public static void destroyed() { count = 0;}
+    public static void destroyed() { count = 0; list.clear(); }
+    public static ArrayList<DynamicStylesFragment> getList(){ return list; }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_dynamic_styles, container, false);
-        EditText input = view.findViewById(R.id.editTextMeasurementInput);
 
-        //DELETING A DYNAMIC FRAGMENT
+
+        //DELETING A DYNAMIC STYLES FRAGMENT
+        EditText input = view.findViewById(R.id.editTextMeasurementInput);
         //view.setOnLongClickListener(new View.OnLongClickListener(){
         input.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                //Toast.makeText(getContext(), "ID: " + count, Toast.LENGTH_SHORT).show();
                 if(list.size() > 1) {
                     String output = "removed fragment: " + localID
                                 + "\ncount is now " + (count-1);
-                    Toast.makeText(getActivity(), output, Toast.LENGTH_SHORT).show();
                     //find fragment that user wants to remove
                     String tag = "dynamic: " + localID;
                     FragmentManager fragmentManager = getFragmentManager();
@@ -76,15 +76,4 @@ public class DynamicStylesFragment extends Fragment {
                 + "\nCount: "  + count;
         Toast.makeText(getContext(), output , Toast.LENGTH_SHORT).show();
     }
-
-    /*
-    @Override
-    public void onAttachFragment(Fragment childFragment) {
-        super.onAttachFragment(childFragment);
-        Toast.makeText(getContext(), "Fragment attached", Toast.LENGTH_SHORT).show();
-        localID = count;
-        count++;
-        list.add(this);
-    }
-    */
 }

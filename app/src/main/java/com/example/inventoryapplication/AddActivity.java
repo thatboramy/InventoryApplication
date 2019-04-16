@@ -35,12 +35,14 @@ public class AddActivity extends AppCompatActivity implements onClickedFragmentL
                 ColorFragment cf = new ColorFragment();
                 fragmentTransaction.add(R.id.add_measurement_fragments, cf);
                 break;
+                /*
             case "MEASURE":
                 DynamicStylesFragment df = new DynamicStylesFragment();
                 String tag = "dynamic: " + df.getLocalID();
                 fragmentTransaction.add(R.id.add_measurement_fragments, df, tag);
 
                 break;
+                */
         }
         fragmentTransaction.commit();
     }

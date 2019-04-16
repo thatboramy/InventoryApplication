@@ -46,10 +46,10 @@ public class DynamicStylesFragment extends Fragment {
             @Override
             public boolean onLongClick(View v) {
                 if(list.size() > 1) {
-Toast.makeText(getContext(), "Fragment ID: " + localID, Toast.LENGTH_SHORT).show();
                     //find fragment that user wants to remove
                     String tag = "dynamic: " + localID;
-                    FragmentManager fragmentManager = getFragmentManager();
+
+                    FragmentManager fragmentManager = getChildFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment removeFrag = fragmentManager.findFragmentByTag(tag);
                     fragmentTransaction.remove(removeFrag);
@@ -59,7 +59,9 @@ Toast.makeText(getContext(), "Fragment ID: " + localID, Toast.LENGTH_SHORT).show
                         if(localID == list.get(i).getLocalID())
                             list.remove(i);
                     }
+
                 }
+
                 return true;
             }
         });
@@ -72,8 +74,5 @@ Toast.makeText(getContext(), "Fragment ID: " + localID, Toast.LENGTH_SHORT).show
         count++;
         localID = count;
         list.add(this);
-        String output = "ID: " + localID
-                + "\nCount: "  + count;
-        Toast.makeText(getContext(), output , Toast.LENGTH_SHORT).show();
     }
 }

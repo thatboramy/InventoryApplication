@@ -16,6 +16,11 @@
 
     <style name="CustomFragmentLabel" parent="TextAppearance.AppCompat">
         <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">24dp</item>
+    </style>
+
+    <style name="CustomFragmentDynamicStyleLabel" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textSize">16dp</item>
     </style>
 

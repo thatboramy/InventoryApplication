@@ -25,15 +25,19 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class DynamicStylesFragment extends DynamicStylesFragmentContainer {
     public DynamicStylesFragment(){
-        super();
-        super.list.add(this);
+        localID = count;
+        count++;
+        //super.add(this);
+        list.add(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_container_dynamic_styles, container, false);
-        return view;
-        //return super.onCreateView(inflater, container, savedInstanceState);
+        //View view = inflater.inflate(R.layout.fragment_container_dynamic_styles, container, false);
+        //return view;
+
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
+
 }

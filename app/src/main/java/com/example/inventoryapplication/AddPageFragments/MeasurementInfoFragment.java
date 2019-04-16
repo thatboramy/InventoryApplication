@@ -130,7 +130,7 @@ public class MeasurementInfoFragment extends Fragment {
         showButton = view.findViewById(R.id.buttonContinue);
         showButton.setVisibility(view.VISIBLE);
     }
-    
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

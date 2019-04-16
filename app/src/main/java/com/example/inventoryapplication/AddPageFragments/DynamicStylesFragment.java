@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -47,11 +48,11 @@ public class DynamicStylesFragment extends Fragment {
 
 
         //DELETING A DYNAMIC STYLES FRAGMENT
-        EditText input = view.findViewById(R.id.editTextMeasurementInput);
+        Button measure = view.findViewById(R.id.button);
         //view.setOnLongClickListener(new View.OnLongClickListener(){
-        input.setOnLongClickListener(new View.OnLongClickListener() {
+        measure.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 if(list.size() > 1) {
                     //find fragment that user wants to remove
                     String tag = "dynamic: " + localID;
@@ -67,8 +68,6 @@ public class DynamicStylesFragment extends Fragment {
                     }
 
                 }
-
-                return true;
             }
         });
         return view;

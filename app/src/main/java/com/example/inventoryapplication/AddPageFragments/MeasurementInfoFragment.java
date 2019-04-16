@@ -25,7 +25,7 @@ public class MeasurementInfoFragment extends Fragment {
     Boolean minimized = false;
 
     private void addDynamicFragment(){
-        DynamicStylesFragment dynamicFragment = new DynamicStylesFragment();
+        DynamicStylesFragmentContainer dynamicFragment = new DynamicStylesFragment();
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT
         String tag = "dynamic: " + dynamicFragment.getLocalID();
         FragmentManager fragmentManager = getChildFragmentManager();

@@ -23,53 +23,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class DynamicStylesFragment extends Fragment {
-    private static ArrayList<DynamicStylesFragment> list = new ArrayList<DynamicStylesFragment>();
-    private static int  count = 0;
-    private int localID;
-
-    public int getLocalID(){
-        return localID;
-    }
-
+public class DynamicStylesFragment extends DynamicStylesFragmentContainer {
     public DynamicStylesFragment(){
-        localID = count;
-        count++;
-        list.add(this);
+        super();
+        super.list.add(this);
     }
 
-    //when MeasurementInfoFragment is destroyed, count is reset to 0
-    public static void destroyed() { count = 0; list.clear(); }
-    public static ArrayList<DynamicStylesFragment> getList(){ return list; }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dynamic_styles, container, false);
-
-
-        //DELETING A DYNAMIC STYLES FRAGMENT
-        Button measure = view.findViewById(R.id.button);
-        //view.setOnLongClickListener(new View.OnLongClickListener(){
-        measure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(list.size() > 1) {
-                    //find fragment that user wants to remove
-                    String tag = "dynamic: " + localID;
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Fragment removeFrag = fragmentManager.findFragmentByTag(tag);
-                    fragmentTransaction.remove(removeFrag);
-                    fragmentTransaction.commit();
-                    //remove fragment from list
-                    for(int i = 0; i < list.size(); i++){
-                        if(localID == list.get(i).getLocalID())
-                            list.remove(i);
-                    }
-
-                }
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_container_dynamic_styles, container, false);
         return view;
+        //return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

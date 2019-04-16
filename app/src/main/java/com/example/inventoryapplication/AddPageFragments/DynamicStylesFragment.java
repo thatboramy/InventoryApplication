@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.example.inventoryapplication.R;
 
@@ -45,8 +46,7 @@ public class DynamicStylesFragment extends Fragment {
             @Override
             public boolean onLongClick(View v) {
                 if(list.size() > 1) {
-                    String output = "removed fragment: " + localID
-                                + "\ncount is now " + (count-1);
+Toast.makeText(getContext(), "Fragment ID: " + localID, Toast.LENGTH_SHORT).show();
                     //find fragment that user wants to remove
                     String tag = "dynamic: " + localID;
                     FragmentManager fragmentManager = getFragmentManager();
@@ -69,8 +69,8 @@ public class DynamicStylesFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        localID = count;
         count++;
+        localID = count;
         list.add(this);
         String output = "ID: " + localID
                 + "\nCount: "  + count;

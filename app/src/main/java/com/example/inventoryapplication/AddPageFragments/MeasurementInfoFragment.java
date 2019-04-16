@@ -77,10 +77,10 @@ public class MeasurementInfoFragment extends Fragment {
         ArrayList<DynamicStylesFragment> list = DynamicStylesFragment.getList();
         String tag;
         Fragment hideFrag;
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         for(int i = 0; i < list.size(); i++){
-            tag = "Dynamic: " + list.get(i).getLocalID();
+            tag = "dynamic: " + list.get(i).getLocalID();
             hideFrag = manager.findFragmentByTag(tag);
             transaction.hide(hideFrag);
         }
@@ -104,10 +104,10 @@ public class MeasurementInfoFragment extends Fragment {
         ArrayList<DynamicStylesFragment> list = DynamicStylesFragment.getList();
         String tag;
         Fragment showFrag;
-        FragmentManager manager = getFragmentManager();
+        FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         for(int i = 0; i < list.size(); i++){
-            tag = "Dynamic: " + list.get(i).getLocalID();
+            tag = "dynamic: " + list.get(i).getLocalID();
             showFrag = manager.findFragmentByTag(tag);
             transaction.show(showFrag);
         }

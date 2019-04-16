@@ -37,7 +37,7 @@ public class MeasurementInfoFragment extends Fragment {
         spinner.setAdapter(arrayAdapter);
 
         //ADD DYNAMIC STYLES FRAGMENT
-        addDynamicFragment("0");
+        addDynamicFragment();
 
         //ADD CLICKLISTENER TO BUTTON
         btnAddMeasurement.setOnClickListener(new View.OnClickListener() {
@@ -66,13 +66,13 @@ public class MeasurementInfoFragment extends Fragment {
 
     }
 
-    private void addDynamicFragment(String val){
+    private void addDynamicFragment(){
         DynamicStylesFragment dynamicFragment = new DynamicStylesFragment();
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT
-        String id = "dynamic: " + val;
+        String tag = "dynamic: " + dynamicFragment.getLocalID();
         FragmentManager fragmentManager = getChildFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, id);
+        fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
         fragmentTransaction.commit();
     }
 
@@ -93,5 +93,12 @@ public class MeasurementInfoFragment extends Fragment {
 
         //mListener.onButtonClicked("COLOR");
         mListener.onButtonClicked("MEASURE");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        //reset the fragment count in DynamicStylesFragment
+        DynamicStylesFragment.destroyed();
     }
 }

@@ -25,17 +25,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class DynamicStylesFragment extends DynamicStylesFragmentContainer {
     public DynamicStylesFragment(){
-        localID = count;
-        count++;
         super.add(this);
     }
-/*
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-*/
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

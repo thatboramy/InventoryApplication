@@ -37,36 +37,4 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
     public void add (DynamicStylesFragmentContainer fragment){
         list.add(fragment);
     }
-
-    /*
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dynamic_styles, container, false);
-
-        //DELETING A DYNAMIC STYLES CONTAINER SUBCLASS FRAGMENT
-        Button measure = view.findViewById(R.id.button);
-        //view.setOnLongClickListener(new View.OnLongClickListener(){
-        measure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(list.size() > 1) {
-                    //find fragment that user wants to remove
-                    String tag = "dynamic: " + localID;
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Fragment removeFrag = fragmentManager.findFragmentByTag(tag);
-                    fragmentTransaction.remove(removeFrag);
-                    fragmentTransaction.commit();
-                    //remove fragment from list
-                    for(int i = 0; i < list.size(); i++){
-                        if(localID == list.get(i).getLocalID())
-                            list.remove(i);
-                    }
-                }
-            }
-        });
-        return view;
-    }
-    */
 }

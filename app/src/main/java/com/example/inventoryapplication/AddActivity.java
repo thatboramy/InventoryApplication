@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.inventoryapplication.AddPageFragments.ColorFragment;
 import com.example.inventoryapplication.AddPageFragments.DynamicStylesFragment;
@@ -15,7 +16,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class AddActivity extends AppCompatActivity implements onClickedFragmentListener {
+public class AddActivity extends AppCompatActivity {
 
     FragmentTransaction fragmentTransaction;
     FragmentManager fragmentManager;
@@ -24,26 +25,5 @@ public class AddActivity extends AppCompatActivity implements onClickedFragmentL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-    }
-
-    @Override
-    public void onButtonClicked(String nextfragment) {
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        switch (nextfragment) {
-            case "COLOR":
-                ColorFragment cf = new ColorFragment();
-                fragmentTransaction.add(R.id.add_measurement_fragments, cf);
-                break;
-                /*
-            case "MEASURE":
-                DynamicStylesFragment df = new DynamicStylesFragment();
-                String tag = "dynamic: " + df.getLocalID();
-                fragmentTransaction.add(R.id.add_measurement_fragments, df, tag);
-
-                break;
-                */
-        }
-        fragmentTransaction.commit();
     }
 }

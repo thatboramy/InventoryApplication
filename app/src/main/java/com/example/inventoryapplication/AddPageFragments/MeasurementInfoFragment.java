@@ -130,7 +130,7 @@ public class MeasurementInfoFragment extends Fragment {
         fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
         fragmentTransaction.commit();
     }
-/*
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -140,14 +140,14 @@ public class MeasurementInfoFragment extends Fragment {
             throw new ClassCastException(activity.toString() + " must implement OnButtonClickedListener ");
         }
     }
-*/
+
     public void clickButton() {
         // When the button is clicked, notify the activity.
         //   The activity will then pass the information to fragment
         //   B (if it has been created).
 
         //mListener.onButtonClicked("COLOR");
-        //mListener.onButtonClicked("MEASURE");
+        mListener.onButtonClicked("MEASURE");
     }
 
     @Override

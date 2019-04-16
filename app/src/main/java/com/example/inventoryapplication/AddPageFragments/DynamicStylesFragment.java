@@ -30,6 +30,13 @@ public class DynamicStylesFragment extends Fragment {
     public int getLocalID(){
         return localID;
     }
+
+    public DynamicStylesFragment(){
+        localID = count;
+        count++;
+        list.add(this);
+    }
+
     //when MeasurementInfoFragment is destroyed, count is reset to 0
     public static void destroyed() { count = 0; list.clear(); }
     public static ArrayList<DynamicStylesFragment> getList(){ return list; }
@@ -48,8 +55,7 @@ public class DynamicStylesFragment extends Fragment {
                 if(list.size() > 1) {
                     //find fragment that user wants to remove
                     String tag = "dynamic: " + localID;
-
-                    FragmentManager fragmentManager = getChildFragmentManager();
+                    FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     Fragment removeFrag = fragmentManager.findFragmentByTag(tag);
                     fragmentTransaction.remove(removeFrag);
@@ -66,13 +72,5 @@ public class DynamicStylesFragment extends Fragment {
             }
         });
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        count++;
-        localID = count;
-        list.add(this);
     }
 }

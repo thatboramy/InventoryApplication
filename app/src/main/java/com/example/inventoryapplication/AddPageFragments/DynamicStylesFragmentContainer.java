@@ -18,9 +18,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public abstract class DynamicStylesFragmentContainer extends Fragment {
-    protected static ArrayList<DynamicStylesFragmentContainer> list = new ArrayList<DynamicStylesFragmentContainer>();
-    protected static int  count = 0;
-    private int localID;
+    public static ArrayList<DynamicStylesFragmentContainer> list = new ArrayList<DynamicStylesFragmentContainer>();
+    public static int  count = 0;
+    public int localID;
 
     //when MeasurementInfoFragment is destroyed, count is reset to 0
     public static void destroyed() { count = 0; list.clear(); }
@@ -28,12 +28,14 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
     public int getLocalID(){ return localID; }
 
     public DynamicStylesFragmentContainer(){
-        localID = count;
-        count++;
-        //list.add(this);
+        //localID = count;
+        //count++;
     }
 
-    /*
+    public void add (DynamicStylesFragmentContainer fragment){
+        list.add(fragment);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,7 +64,8 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
                 }
             }
         });
+
         return view;
     }
-    */
+
 }

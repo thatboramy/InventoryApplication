@@ -15,6 +15,7 @@ import com.example.inventoryapplication.Provider.CategoryDataInjector;
 import com.example.inventoryapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,8 @@ public class MeasurementInfoFragment extends Fragment {
     private View view;
     private Boolean minimized = false;
     private static String label = "";
+    //private String previousCategory = "EMPTY SPACE";
+    //private String currentCategory;
 
     public static String getText(){ return label; }
 
@@ -38,7 +41,6 @@ public class MeasurementInfoFragment extends Fragment {
         else{
             dynamicFragment = new DynamicStylesFragmentBoolean();
         }
-        //dynamicFragment.updateText(text);
 
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT
         String tag = "dynamic: " + dynamicFragment.getLocalID();
@@ -66,23 +68,32 @@ public class MeasurementInfoFragment extends Fragment {
             categories_name.add(c.getName());
         }
         //ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.ClothingType, android.R.layout.simple_spinner_item);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
-        //Spinnger OnCLick Listener
+        //Spinner OnCLick Listener
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected_type = spinner.getSelectedItem().toString();
-                if(selected_type.equals("")){
-
-                }else {
+                //REMOVE EMPTY SPACE SPINNER OPTION
+                if(categories_name.get(0).equals("") && !selected_type.equals("")) {
+                    //empty item listener is not selected
+                    categories_name.remove(0);
+                    arrayAdapter.notifyDataSetChanged();
+                }
+                //SET UP FRAGMENTS OF NEW CATEGORY
+                else {
+                    DynamicStylesFragmentContainer.destroyed();
                     ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(1);
-                    
                     for (CategoryAttribute c : tempCA) {
                         addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
                     }
+                    System.out.println("-----------------");
+                    System.out.println("SELECTED DIFFERENT CATEGORY");
+                    System.out.println("-----------------");
                 }
+
             }
 
             @Override
@@ -122,9 +133,6 @@ public class MeasurementInfoFragment extends Fragment {
     }
 
     private void setupRequiredInputs(String response){
-        System.out.println("-------------------------");
-        System.out.println("SETUP: ");
-        System.out.println("-------------------------");
         //ADD DYNAMIC STYLES FRAGMENTS
         for(int i = 0; i < response.length(); i++) {
             if(response.charAt(i) == 'M')

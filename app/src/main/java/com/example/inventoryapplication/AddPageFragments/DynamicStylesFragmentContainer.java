@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.inventoryapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -59,5 +60,11 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
             if(!required && localID == list.get(i).localID)
                 list.remove(i);
         }
+    }
+
+    public static void removeFragments(){
+        List<Fragment> temp = fragmentManager.getFragments();
+        temp.clear();
+        list.clear();
     }
 }

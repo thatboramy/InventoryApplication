@@ -75,16 +75,30 @@ public class MeasurementInfoFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected_type = spinner.getSelectedItem().toString();
+                long type;
+                if(selected_type == "Hat"){
+                    type = 1;
+                }else{type = 2;}
+
                 //REMOVE EMPTY SPACE SPINNER OPTION
-                if(categories_name.get(0).equals("") && !selected_type.equals("")) {
+                if(selected_type.equals("")){
+                    System.out.println("-----------------");
+                    System.out.println("INITIALIZING THE MEASUREINFO");
+                    System.out.println("-----------------");
+                }
+                else if(categories_name.get(0).equals("") && !selected_type.equals("")) {
                     //empty item listener is not selected
+                    ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(type);
+                    for (CategoryAttribute c : tempCA) {
+                        addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
+                    }
                     categories_name.remove(0);
-                    arrayAdapter.notifyDataSetChanged();
                 }
                 //SET UP FRAGMENTS OF NEW CATEGORY
                 else {
-                    DynamicStylesFragmentContainer.destroyed();
-                    ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(1);
+                    //DynamicStylesFragmentContainer.destroyed();
+
+                    ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(type);
                     for (CategoryAttribute c : tempCA) {
                         addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
                     }
@@ -92,7 +106,6 @@ public class MeasurementInfoFragment extends Fragment {
                     System.out.println("SELECTED DIFFERENT CATEGORY");
                     System.out.println("-----------------");
                 }
-
             }
 
             @Override
@@ -146,20 +159,6 @@ public class MeasurementInfoFragment extends Fragment {
         //HIDE SPINNER
         Spinner spinner = view.findViewById(R.id.spinnerSection);
         spinner.setVisibility(view.GONE);
-/*
-        //HIDE DYNAMIC STYLES FRAGMENTS
-        ArrayList<DynamicStylesFragmentMeasure> list = DynamicStylesFragmentMeasure.getList();
-        String tag;
-        Fragment hideFrag;
-        FragmentManager manager = getChildFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        for(int i = 0; i < list.size(); i++){
-            tag = "dynamic: " + list.get(i).getLocalID();
-            hideFrag = manager.findFragmentByTag(tag);
-            transaction.hide(hideFrag);
-        }
-        transaction.commit();
-*/
         //HIDE NEW MEASUREMENT BUTTON
         Button hideButton = view.findViewById(R.id.buttonNew);
         hideButton.setVisibility(view.GONE);
@@ -170,7 +169,9 @@ public class MeasurementInfoFragment extends Fragment {
         FragmentTransaction ft = fm.beginTransaction();
 
         List<Fragment> test = fm.getFragments();
-        for(Fragment f:test){ft.hide(f);}
+        for(Fragment f:test){
+            ft.hide(f);
+        }
         ft.commit();
 
     }

@@ -8,7 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.inventoryapplication.Provider.Category;
+import com.example.inventoryapplication.Provider.CategoryAttribute;
+import com.example.inventoryapplication.Provider.CategoryDataInjector;
 import com.example.inventoryapplication.R;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,7 +57,14 @@ public class MeasurementInfoFragment extends Fragment {
 
         //SET UP SPINNER
         Spinner spinner = view.findViewById(R.id.spinnerSection);
-        ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.ClothingType, android.R.layout.simple_spinner_item);
+        CategoryDataInjector catInjector = new CategoryDataInjector();
+        final ArrayList<Category> categories = catInjector.getCategories();
+        final ArrayList<String> categories_name = new ArrayList<>();
+        for(Category c:categories){
+            categories_name.add(c.getName());
+        }
+        //ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.ClothingType, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 

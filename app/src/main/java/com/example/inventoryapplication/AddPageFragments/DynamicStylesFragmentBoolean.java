@@ -30,10 +30,6 @@ public class DynamicStylesFragmentBoolean extends DynamicStylesFragmentContainer
 
         TextView textView = view.findViewById(R.id.textView9);
         textView.setText(super.label);
-        System.out.println("-------------------------");
-        System.out.println("Boolean: " + super.label);
-        System.out.println("Local ID: " + super.localID);
-        System.out.println("-------------------------");
         deleteButton = view.findViewById(R.id.delete_button_bool);
         //DELETING A DYNAMIC STYLES CONTAINER SUBCLASS FRAGMENT
         deleteButton.setOnClickListener(new View.OnClickListener() {

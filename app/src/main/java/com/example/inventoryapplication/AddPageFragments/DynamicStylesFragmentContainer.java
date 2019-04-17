@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.inventoryapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -41,11 +42,6 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
         localID = count;
         count++;
         label = MeasurementInfoFragment.getText();
-
-        System.out.println("-------------------------");
-        System.out.println("Container: " + label);
-        System.out.println("Local ID: " + localID);
-        System.out.println("-------------------------");
     }
 
     protected void add (DynamicStylesFragmentContainer fragment){
@@ -66,10 +62,9 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
         }
     }
 
-    protected void updateText(String text){
-        String tag = "dynamic: " + localID;
-        Fragment fragment = fragmentManager.findFragmentByTag(tag);
-        TextView textView = fragment.getView().findViewById(R.id.textView9);
-        textView.setText(text);
+    public static void removeFragments(){
+        List<Fragment> temp = fragmentManager.getFragments();
+        temp.clear();
+        list.clear();
     }
 }

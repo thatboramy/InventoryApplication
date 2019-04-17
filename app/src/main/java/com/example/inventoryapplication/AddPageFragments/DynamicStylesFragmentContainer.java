@@ -41,11 +41,6 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
         localID = count;
         count++;
         label = MeasurementInfoFragment.getText();
-
-        System.out.println("-------------------------");
-        System.out.println("Container: " + label);
-        System.out.println("Local ID: " + localID);
-        System.out.println("-------------------------");
     }
 
     protected void add (DynamicStylesFragmentContainer fragment){
@@ -64,12 +59,5 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
             if(!required && localID == list.get(i).localID)
                 list.remove(i);
         }
-    }
-
-    protected void updateText(String text){
-        String tag = "dynamic: " + localID;
-        Fragment fragment = fragmentManager.findFragmentByTag(tag);
-        TextView textView = fragment.getView().findViewById(R.id.textView9);
-        textView.setText(text);
     }
 }

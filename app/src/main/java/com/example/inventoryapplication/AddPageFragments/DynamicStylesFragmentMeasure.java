@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 public class DynamicStylesFragmentMeasure extends DynamicStylesFragmentContainer {
-    public DynamicStylesFragmentMeasure(){ super(); super.add(this); }
+    public DynamicStylesFragmentMeasure(){ super.add(this); }
 
     @Nullable
     @Override
@@ -24,10 +24,6 @@ public class DynamicStylesFragmentMeasure extends DynamicStylesFragmentContainer
 
         TextView textView = view.findViewById(R.id.textView3);
         textView.setText(super.label);
-        System.out.println("-------------------------");
-        System.out.println("Measure: " + super.label);
-        System.out.println("Local ID: " + super.localID);
-        System.out.println("-------------------------");
 
         //DELETING A DYNAMIC STYLES CONTAINER SUBCLASS FRAGMENT
         Button measure = view.findViewById(R.id.button);

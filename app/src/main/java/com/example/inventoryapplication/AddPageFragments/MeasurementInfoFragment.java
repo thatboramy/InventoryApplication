@@ -89,6 +89,7 @@ public class MeasurementInfoFragment extends Fragment {
                 else if(categories_name.get(0).equals("") && !selected_type.equals("")) {
                     //empty item listener is not selected
                     ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(type);
+                    removeCurrFragments();
                     for (CategoryAttribute c : tempCA) {
                         addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
                     }
@@ -99,6 +100,7 @@ public class MeasurementInfoFragment extends Fragment {
                     //DynamicStylesFragmentContainer.destroyed();
 
                     ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(type);
+                    removeCurrFragments();
                     for (CategoryAttribute c : tempCA) {
                         addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
                     }
@@ -142,6 +144,16 @@ public class MeasurementInfoFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void removeCurrFragments() {
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        List<Fragment> fragments = fm.getFragments();
+        for(Fragment f: fragments){
+            ft.remove(f);
+        }
+        ft.commit();
     }
 
     private void setupRequiredInputs(String response){

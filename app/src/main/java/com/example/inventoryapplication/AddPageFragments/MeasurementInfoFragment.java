@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -56,10 +57,11 @@ public class MeasurementInfoFragment extends Fragment {
         Button btnContinue = (Button) view.findViewById(R.id.buttonContinue);
 
         //SET UP SPINNER
-        Spinner spinner = view.findViewById(R.id.spinnerSection);
-        CategoryDataInjector catInjector = new CategoryDataInjector();
+        final Spinner spinner = view.findViewById(R.id.spinnerSection);
+        final CategoryDataInjector catInjector = new CategoryDataInjector();
         final ArrayList<Category> categories = catInjector.getCategories();
         final ArrayList<String> categories_name = new ArrayList<>();
+        categories_name.add("");
         for(Category c:categories){
             categories_name.add(c.getName());
         }
@@ -67,10 +69,31 @@ public class MeasurementInfoFragment extends Fragment {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
+        //Spinnger OnCLick Listener
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selected_type = spinner.getSelectedItem().toString();
+                if(selected_type.equals("")){
+
+                }else {
+                    ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(1);
+                    
+                    for (CategoryAttribute c : tempCA) {
+                        addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //SETUP INITIAL PROMPTS FOR USER
-        String databaseResponse = "BMBBMBBMB";
-        setupRequiredInputs(databaseResponse);
+        //String databaseResponse = "BMBBMBBMB";
+        //setupRequiredInputs(databaseResponse);
 
         //ADD CLICKLISTENER TO BUTTON
         btnAddMeasurement.setOnClickListener(new View.OnClickListener() {

@@ -17,16 +17,23 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MeasurementInfoFragment extends Fragment {
-    View view;
-    Boolean minimized = false;
+    private View view;
+    private Boolean minimized = false;
+    private static String label = "";
 
-    private void addDynamicFragment(String type){
+    public static String getText(){ return label; }
+
+    private void addDynamicFragment(String type, String text) {
+        label = text;
         DynamicStylesFragmentContainer dynamicFragment;
         //LOGIC THAT DISPLAYS TYPE OF EXPECTED USER INPUT
-        if(type == "MEASURE")
+        if (type == "MEASURE")
             dynamicFragment = new DynamicStylesFragmentMeasure();
-        else
+        else{
             dynamicFragment = new DynamicStylesFragmentBoolean();
+        }
+        //dynamicFragment.updateText(text);
+
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT
         String tag = "dynamic: " + dynamicFragment.getLocalID();
         FragmentManager fragmentManager = getChildFragmentManager();
@@ -50,14 +57,14 @@ public class MeasurementInfoFragment extends Fragment {
         spinner.setAdapter(arrayAdapter);
 
         //SETUP INITIAL PROMPTS FOR USER
-        String databaseResponse = "BMBBMBBM";
+        String databaseResponse = "BMBBMBBMB";
         setupRequiredInputs(databaseResponse);
 
         //ADD CLICKLISTENER TO BUTTON
         btnAddMeasurement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addDynamicFragment("BOOLEAN");
+                addDynamicFragment("BOOLEAN", "TEST 1");
             }
         });
 
@@ -80,12 +87,15 @@ public class MeasurementInfoFragment extends Fragment {
     }
 
     private void setupRequiredInputs(String response){
+        System.out.println("-------------------------");
+        System.out.println("SETUP: ");
+        System.out.println("-------------------------");
         //ADD DYNAMIC STYLES FRAGMENTS
         for(int i = 0; i < response.length(); i++) {
             if(response.charAt(i) == 'M')
-                addDynamicFragment("MEASURE");
+                addDynamicFragment("MEASURE", "TEST 2");
             else
-                addDynamicFragment("BOOLEAN");
+                addDynamicFragment("BOOLEAN", "TEST 3");
         }
     }
 

@@ -1,11 +1,13 @@
 package com.example.inventoryapplication.AddPageFragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.inventoryapplication.R;
 
@@ -25,6 +27,7 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
 
     protected static int  count = 0;
     protected int localID;
+    protected String label = "";
     protected static int getListSize(){ return list.size(); }
     protected int getRequiredFragments(){ return requiredFragments; }
     protected int getLocalID(){ return localID; }
@@ -37,9 +40,13 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
     public DynamicStylesFragmentContainer(){
         localID = count;
         count++;
+        label = MeasurementInfoFragment.getText();
+
+        System.out.println("-------------------------");
+        System.out.println("Container: " + label);
+        System.out.println("Local ID: " + localID);
+        System.out.println("-------------------------");
     }
-
-
 
     protected void add (DynamicStylesFragmentContainer fragment){
         list.add(fragment);
@@ -57,5 +64,12 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
             if(!required && localID == list.get(i).localID)
                 list.remove(i);
         }
+    }
+
+    protected void updateText(String text){
+        String tag = "dynamic: " + localID;
+        Fragment fragment = fragmentManager.findFragmentByTag(tag);
+        TextView textView = fragment.getView().findViewById(R.id.textView9);
+        textView.setText(text);
     }
 }

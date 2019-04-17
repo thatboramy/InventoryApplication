@@ -1,6 +1,5 @@
 package com.example.inventoryapplication.AddPageFragments;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.inventoryapplication.R;
-
-import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +20,13 @@ public class MeasurementInfoFragment extends Fragment {
     View view;
     Boolean minimized = false;
 
-    private void addDynamicFragment(){
-        DynamicStylesFragmentContainer dynamicFragment = new DynamicStylesFragment();
+    private void addDynamicFragment(String type){
+        DynamicStylesFragmentContainer dynamicFragment;
+        //LOGIC THAT DISPLAYS TYPE OF EXPECTED USER INPUT
+        if(type == "MEASURE")
+            dynamicFragment = new DynamicStylesFragmentMeasure();
+        else
+            dynamicFragment = new DynamicStylesFragmentBoolean();
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT
         String tag = "dynamic: " + dynamicFragment.getLocalID();
         FragmentManager fragmentManager = getChildFragmentManager();
@@ -48,15 +49,15 @@ public class MeasurementInfoFragment extends Fragment {
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
-        //ADD DYNAMIC STYLES FRAGMENT
-        addDynamicFragment();
+        //SETUP INITIAL PROMPTS FOR USER
+        String databaseResponse = "BMBBMBBM";
+        setupRequiredInputs(databaseResponse);
 
         //ADD CLICKLISTENER TO BUTTON
         btnAddMeasurement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //clickButton();
-                addDynamicFragment();
+                addDynamicFragment("BOOLEAN");
             }
         });
 
@@ -78,14 +79,24 @@ public class MeasurementInfoFragment extends Fragment {
         return view;
     }
 
-    public void minimize(){
+    private void setupRequiredInputs(String response){
+        //ADD DYNAMIC STYLES FRAGMENTS
+        for(int i = 0; i < response.length(); i++) {
+            if(response.charAt(i) == 'M')
+                addDynamicFragment("MEASURE");
+            else
+                addDynamicFragment("BOOLEAN");
+        }
+    }
+
+    private void minimize(){
         minimized = true;
         //HIDE SPINNER
         Spinner spinner = view.findViewById(R.id.spinnerSection);
         spinner.setVisibility(view.GONE);
 /*
         //HIDE DYNAMIC STYLES FRAGMENTS
-        ArrayList<DynamicStylesFragment> list = DynamicStylesFragment.getList();
+        ArrayList<DynamicStylesFragmentMeasure> list = DynamicStylesFragmentMeasure.getList();
         String tag;
         Fragment hideFrag;
         FragmentManager manager = getChildFragmentManager();
@@ -105,14 +116,14 @@ public class MeasurementInfoFragment extends Fragment {
 
     }
 
-    public void maximize(){
+    private void maximize(){
         minimized = false;
         //SHOW SPINNER
         Spinner spinner = view.findViewById(R.id.spinnerSection);
         spinner.setVisibility(view.VISIBLE);
 /*
         //SHOW DYNAMIC STYLES FRAGMENTS
-        ArrayList<DynamicStylesFragment> list = DynamicStylesFragment.getList();
+        ArrayList<DynamicStylesFragmentMeasure> list = DynamicStylesFragmentMeasure.getList();
         String tag;
         Fragment showFrag;
         FragmentManager manager = getChildFragmentManager();
@@ -134,7 +145,7 @@ public class MeasurementInfoFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //reset the fragment count in DynamicStylesFragment
-        DynamicStylesFragment.destroyed();
+        //reset the fragment count in DynamicStylesFragmentMeasure
+        DynamicStylesFragmentMeasure.destroyed();
     }
 }

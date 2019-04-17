@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/fragmentDynamicStyles"
-        android:name="com.example.inventoryapplication.AddPageFragments.DynamicStylesFragment"
+        android:name="com.example.inventoryapplication.AddPageFragments.DynamicStylesFragmentMeasure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

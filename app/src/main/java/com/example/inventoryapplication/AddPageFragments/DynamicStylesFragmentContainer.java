@@ -22,14 +22,15 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
     private static int requiredFragments = 1;
     private static FragmentManager fragmentManager;
     private static FragmentTransaction fragmentTransaction;
+
     protected static int  count = 0;
     protected int localID;
-
     protected static int getListSize(){ return list.size(); }
     protected int getRequiredFragments(){ return requiredFragments; }
-    public int getLocalID(){ return localID; }
+    protected int getLocalID(){ return localID; }
+    protected boolean required = false;
 
-    public static ArrayList<DynamicStylesFragmentContainer> getList(){ return list; }
+    //public static ArrayList<DynamicStylesFragmentContainer> getList(){ return list; }
     //when MeasurementInfoFragment is destroyed, count is reset to 0
     public static void destroyed() { count = 0; list.clear(); }
 
@@ -37,6 +38,8 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
         localID = count;
         count++;
     }
+
+
 
     protected void add (DynamicStylesFragmentContainer fragment){
         list.add(fragment);
@@ -51,7 +54,7 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
         fragmentTransaction.commit();
         //remove fragment from list
         for(int i = 0; i < list.size(); i++){
-            if(localID == list.get(i).localID)
+            if(!required && localID == list.get(i).localID)
                 list.remove(i);
         }
     }

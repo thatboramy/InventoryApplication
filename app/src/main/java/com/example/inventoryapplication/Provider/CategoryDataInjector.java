@@ -6,10 +6,12 @@ public class CategoryDataInjector implements ICategoryProvider {
     @Override
     public ArrayList<Category> getCategories() {
         ArrayList<Category> temp = new ArrayList<>();
-        temp.add(new Category(1, "Hat"));
+        temp.add(new Category(1, "EMPTY_SPACE"));
         temp.add(new Category(2, "Shirt"));
         temp.add(new Category(3, "Pants"));
-        temp.add(new Category(4, "Jacket"));
+        temp.add(new Category(4, "Hat"));
+        temp.add(new Category(5, "Jacket"));
+        temp.add(new Category(6, "Skirt"));
         return temp;
     }
 

@@ -15,6 +15,7 @@ import com.example.inventoryapplication.Provider.CategoryDataInjector;
 import com.example.inventoryapplication.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -159,6 +160,13 @@ public class MeasurementInfoFragment extends Fragment {
         hideButton = view.findViewById(R.id.buttonContinue);
         hideButton.setVisibility(view.GONE);
 
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        List<Fragment> test = fm.getFragments();
+        for(Fragment f:test){ft.hide(f);}
+        ft.commit();
+
     }
 
     private void maximize(){
@@ -185,6 +193,14 @@ public class MeasurementInfoFragment extends Fragment {
         showButton.setVisibility(view.VISIBLE);
         showButton = view.findViewById(R.id.buttonContinue);
         showButton.setVisibility(view.VISIBLE);
+
+        FragmentManager fm = getChildFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+
+        List<Fragment> test = fm.getFragments();
+        for(Fragment f:test){ft.show(f);}
+        ft.commit();
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.inventoryapplication.AddPageFragments;
+package com.example.inventoryapplication.Provider;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ public class CategoryAttribute {
     String AttributeName;
     String AttributeDisplayName;
     int AttributeValueLimit;
+    String AttributeValue;
     String UIDisplayType;
 
     public CategoryAttribute(boolean required, int listOrder, String attributeName, String attributeDisplayName, String UIDisplayType) {
@@ -19,6 +20,16 @@ public class CategoryAttribute {
     }
 
     public CategoryAttribute() {
+    }
+
+    public CategoryAttribute(boolean required, int listOrder, String attributeName, String attributeDisplayName, int attributeValueLimit, String attributeValue, String UIDisplayType) {
+        this.required = required;
+        ListOrder = listOrder;
+        AttributeName = attributeName;
+        AttributeDisplayName = attributeDisplayName;
+        AttributeValueLimit = attributeValueLimit;
+        AttributeValue = attributeValue;
+        this.UIDisplayType = UIDisplayType;
     }
 
     ArrayList<CategoryAttribute> getHatAttribute(){

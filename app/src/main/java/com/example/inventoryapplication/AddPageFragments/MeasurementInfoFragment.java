@@ -53,7 +53,6 @@ public class MeasurementInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view =  inflater.inflate(R.layout.fragment_measurement_info, container, false);
-
         Button btnAddMeasurement = (Button) view.findViewById(R.id.buttonNew);
         Button btnContinue = (Button) view.findViewById(R.id.buttonContinue);
 
@@ -67,7 +66,7 @@ public class MeasurementInfoFragment extends Fragment {
             categories_name.add(c.getName());
         }
         //ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.ClothingType, android.R.layout.simple_spinner_item);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item,categories_name);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
         //Spinnger OnCLick Listener
@@ -79,7 +78,6 @@ public class MeasurementInfoFragment extends Fragment {
 
                 }else {
                     ArrayList<CategoryAttribute> tempCA = catInjector.getCategoryAttributesById(1);
-                    
                     for (CategoryAttribute c : tempCA) {
                         addDynamicFragment(c.getUIDisplayType(), c.getAttributeDisplayName());
                     }

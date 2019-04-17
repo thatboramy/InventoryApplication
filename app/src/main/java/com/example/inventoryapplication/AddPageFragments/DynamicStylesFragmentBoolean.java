@@ -21,7 +21,7 @@ import com.example.inventoryapplication.R;
 
 public class DynamicStylesFragmentBoolean extends DynamicStylesFragmentContainer {
     public DynamicStylesFragmentBoolean(){ super(); super.add(this); }
-
+    Button deleteButton;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,9 +34,9 @@ public class DynamicStylesFragmentBoolean extends DynamicStylesFragmentContainer
         System.out.println("Boolean: " + super.label);
         System.out.println("Local ID: " + super.localID);
         System.out.println("-------------------------");
-
+        deleteButton = view.findViewById(R.id.delete_button_bool);
         //DELETING A DYNAMIC STYLES CONTAINER SUBCLASS FRAGMENT
-        view.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(getListSize() > getRequiredFragments()) {

@@ -26,6 +26,7 @@ public class CategoryDataInjector implements ICategoryProvider {
 
             tempCA.add(new CategoryAttribute(true, 1, "sleeve", "Shirt Sleeve?", 5, "bool", "BOOLEAN"));
             tempCA.add(new CategoryAttribute(false, 2, "size", "Shirt Size", 10, "int", "MEASUREMENT"));
+            tempCA.add(new CategoryAttribute(false, 3, "brand", "Brand", 10, "int", "SPINNER"));
 
         }
             return tempCA;

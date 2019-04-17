@@ -36,10 +36,12 @@ public class MeasurementInfoFragment extends Fragment {
         label = text;
         DynamicStylesFragmentContainer dynamicFragment;
         //LOGIC THAT DISPLAYS TYPE OF EXPECTED USER INPUT
-        if (type == "MEASURE")
+        if (type == "MEASUREMENT")
             dynamicFragment = new DynamicStylesFragmentMeasure();
-        else{
+        else if (type == "BOOLEAN"){
             dynamicFragment = new DynamicStylesFragmentBoolean();
+        }else{
+            dynamicFragment = new DynamicStylesFragmentSpinner();
         }
 
         //SET UP DYNAMIC ID: DYNAMICFRAGMENT

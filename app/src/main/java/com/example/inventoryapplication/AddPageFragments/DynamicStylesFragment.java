@@ -39,19 +39,8 @@ public class DynamicStylesFragment extends DynamicStylesFragmentContainer {
         measure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(getListSize() > 1) {
-                    //find fragment that user wants to remove
-                    String tag = "dynamic: " + localID;
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    Fragment removeFrag = fragmentManager.findFragmentByTag(tag);
-                    fragmentTransaction.remove(removeFrag);
-                    fragmentTransaction.commit();
-                    //remove fragment from list
-                    for(int i = 0; i < list.size(); i++){
-                        if(localID == list.get(i).getLocalID())
-                            list.remove(i);
-                    }
+                if(getListSize() > getRequiredFragments()) {
+                    remove();
                 }
             }
         });

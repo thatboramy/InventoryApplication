@@ -58,4 +58,6 @@ public abstract class DynamicStylesFragmentContainer extends Fragment {
                 list.remove(i);
         }
     }
+
+    public abstract void setName(String test);
 }

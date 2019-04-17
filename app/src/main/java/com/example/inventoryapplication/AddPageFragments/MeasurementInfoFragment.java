@@ -1,14 +1,18 @@
 package com.example.inventoryapplication.AddPageFragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.inventoryapplication.R;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -34,6 +38,28 @@ public class MeasurementInfoFragment extends Fragment {
         fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
         fragmentTransaction.commit();
     }
+    //OVERLOAD WITH 2 Parameters
+    private void addDynamicFragment(String type, String dispName){
+        DynamicStylesFragmentContainer dynamicFragment;
+        //LOGIC THAT DISPLAYS TYPE OF EXPECTED USER INPUT
+        if(type == "MEASURE"){
+            dynamicFragment = new DynamicStylesFragmentMeasure();
+
+            }
+        else
+        {dynamicFragment = new DynamicStylesFragmentBoolean();
+        }
+        //SET UP DYNAMIC ID: DYNAMICFRAGMENT
+        String tag = "dynamic: " + dynamicFragment.getLocalID();
+        FragmentManager fragmentManager = getChildFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.add_measurement_fragments, dynamicFragment, tag);
+        fragmentTransaction.commit();
+        if(type == "MEASURE")
+        {
+            
+        }
+    }
 
     @Nullable
     @Override
@@ -44,14 +70,14 @@ public class MeasurementInfoFragment extends Fragment {
         Button btnContinue = (Button) view.findViewById(R.id.buttonContinue);
 
         //SET UP SPINNER
-        Spinner spinner = view.findViewById(R.id.spinnerSection);
+        final Spinner spinner = view.findViewById(R.id.spinnerSection);
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(getContext(), R.array.ClothingType, android.R.layout.simple_spinner_item);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
 
         //SETUP INITIAL PROMPTS FOR USER
-        String databaseResponse = "BMBBMBBM";
-        setupRequiredInputs(databaseResponse);
+        //String databaseResponse = "BMBBMBBM";
+        //setupRequiredInputs(databaseResponse);
 
         //ADD CLICKLISTENER TO BUTTON
         btnAddMeasurement.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +102,24 @@ public class MeasurementInfoFragment extends Fragment {
                 if(minimized) maximize();
             }
         });
+
+        //SPINNER LISTENER
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String select_type = spinner.getSelectedItem().toString();
+                if (select_type.equals("Cap")) {
+                    CategoryAttribute temp_CA = new CategoryAttribute();
+                    addFragments(temp_CA.getHatAttribute());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         return view;
     }
 
@@ -86,6 +130,19 @@ public class MeasurementInfoFragment extends Fragment {
                 addDynamicFragment("MEASURE");
             else
                 addDynamicFragment("BOOLEAN");
+        }
+    }
+
+    private void addFragments(ArrayList<CategoryAttribute> list){
+        for (CategoryAttribute c: list) {
+            switch (c.UIDisplayType){
+                case "BOOLEAN":
+                    addDynamicFragment("BOOLEAN", c.AttributeDisplayName);
+                    break;
+                case "MEASURE":
+                    addDynamicFragment("MEASURE", c.AttributeDisplayName);
+                    break;
+            }
         }
     }
 

@@ -7,7 +7,7 @@
 
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/measure_label"
         style="@style/CustomFragmentDynamicStyleLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
         android:numeric="decimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button"
-        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintStart_toEndOf="@+id/measure_label"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
